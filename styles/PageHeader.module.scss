@@ -1,0 +1,38 @@
+.wrap {
+  background-color: #201f1f;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.contentWrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 0;
+}
+
+.imgWrap {
+  margin-right: 24px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+
+  img {
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+  }
+}
+
