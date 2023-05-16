@@ -1,11 +1,11 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
       <Header/>
-      {children}
+      { children }
       <Footer/>
     </>
   );

@@ -3,13 +3,14 @@ import { TopArtist } from '@/components/Home/TopArtist';
 import { ContentSection } from '@/components/ContentSection';
 import { PublicPlaylist } from '@/components/Home/PublicPlaylist';
 import playlist from '@/pages/playlist';
+import { useSession } from 'next-auth/react';
 // import { useEffect, useState } from 'react';
 
 export const getStaticProps = async () => {
   const responseUsers = await fetch('https://jsonplaceholder.typicode.com/users');
   const usersData = await responseUsers.json();
 
-  if (!usersData) {
+  if ( !usersData ) {
     return {
       notFound: true,
     };
@@ -32,7 +33,11 @@ export const getStaticProps = async () => {
   };
 };
 
-const Home = ({ artists,playlists }) => {
+const Home = ({ artists, playlists }) => {
+  const { data: session, status } = useSession();
+
+  console.log('data', session);
+  // const { user } = session;
   // const [posts, setPosts] = useState(null)
 
   // useEffect(() => {
@@ -46,12 +51,12 @@ const Home = ({ artists,playlists }) => {
   // }, []);
   return (
     <>
-      <PageHeader title="User Name" category="Profile"/>
+      <PageHeader title={ session?.user.name } category="Profile" imgUrl={ session?.user.image }/>
       <ContentSection title="Top artists this month" path="/">
-        <TopArtist artists={artists}/>
+        <TopArtist artists={ artists }/>
       </ContentSection>
       <ContentSection title="Top tracks this month" path="/">
-        <PublicPlaylist playlists={playlists}/>
+        <PublicPlaylist playlists={ playlists }/>
       </ContentSection>
     </>
   );
